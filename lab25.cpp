@@ -5,12 +5,13 @@
 #include <vector>
 #include <list>
 #include <set>
+#include <algorithm>
 using namespace std;
 using namespace std::chrono;
 
 //READING
 int readVector(string& filename, vector<string>& vec){
-    ifstream fin(filename);
+
     string line;
 
     auto start = high_resolution_clock::now();
@@ -26,13 +27,12 @@ int readVector(string& filename, vector<string>& vec){
 }
 
 int readList(string& filename, list<string>& lst){
-    ifstream fin(filename);
     string line;
 
     auto start = high_resolution_clock::now();
-    ifstream fin("codes.txt");
+    ifstream fin2("codes.txt");
    while 
-    (getline(fin, line));{
+    (getline(fin2, line));{
        lst.push_back(line);
     }
     auto end = high_resolution_clock::now();
@@ -41,19 +41,43 @@ int readList(string& filename, list<string>& lst){
 }
 
 int readSet(string& filename, set<string>& st){
-    ifstream fin(filename);
     string line;
 
     auto start = high_resolution_clock::now();
-    ifstream fin("codes.txt");
+    ifstream fin3("codes.txt");
    while 
-    (getline(fin, line));{
+    (getline(fin3, line));{
        st.insert(line);
     }
     auto end = high_resolution_clock::now();
     return duration_cast<milliseconds>(end-start).count();
 
 }
+
+//SORTING
+int sortVector(vector<string>& vec) {
+auto start = high_resolution_clock::now();
+sort(vec.begin(), vec.end());
+auto end = high_resolution_clock::now();
+
+return duration_cast<milliseconds>(end-start).count();
+}
+
+int sortList(list<string>& lst) {
+auto start = high_resolution_clock::now();
+lst.sort();
+auto end = high_resolution_clock::now();
+
+return duration_cast<milliseconds>(end-start).count();
+}
+
+/*int sortSet(set<string>& st) {
+auto start = high_resolution_clock::now();
+//automatic sorting
+auto end = high_resolution_clock::now();
+
+return duration_cast<milliseconds>(end-start).count();
+} */
 
 int main() {
 
@@ -65,7 +89,11 @@ string file = "codes.txt";
 
 int vecRead = readVector(file, vec);
 int listRead = readList(file, lst);
-int setRead = readSet(file, st);;
+int setRead = readSet(file, st);
+
+int vecSort = sortVector(file, vec);
+int listSort = sortList(file, lst);
+//int setSort = sortSet(file, st);
 
     
 
@@ -74,6 +102,10 @@ int setRead = readSet(file, st);;
 cout << " vec Read time: " << vecRead;
 cout << " list Read time: " << listRead;
 cout << " set Read time: " << setRead;
+
+cout << " vec Read time: " << vecSort;
+cout << " list Read time: " << listSort;
+//cout << " set Read time: " << setSort;
 
 
 
