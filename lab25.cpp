@@ -6,6 +6,7 @@
 #include <list>
 #include <set>
 #include <algorithm>
+#include <iomanip>
 using namespace std;
 using namespace std::chrono;
 
@@ -73,13 +74,13 @@ auto end = high_resolution_clock::now();
 return duration_cast<microseconds>(end-start).count();
 }
 
-/*int sortSet(set<string>& st) {
+int sortSet(set<string>& st) {
 auto start = high_resolution_clock::now();
 //automatic sorting
 auto end = high_resolution_clock::now();
 
 return duration_cast<milliseconds>(end-start).count();
-} */
+} 
 
 //INSERT
 int insertVector(vector<string>& vec, const string& val) {
@@ -162,7 +163,7 @@ int setRead = readSet(file, st);
 
 int vecSort = sortVector(vec);
 int listSort = sortList(lst);
-//int setSort = sortSet(file, st);
+int setSort = sortSet(st);
 
 string insert = "HI";
 int vecInsert = insertVector(vec, insert);
@@ -175,7 +176,15 @@ int setDelete = deleteSet(st);
 
 
     //output
-cout << " vec Read time: " << vecRead << endl;
+    cout << left << setw(8) << "Operation" << setw(8) << "Vector" << setw(8) << "List" << setw(8) << "Set" << endl;
+
+    cout << setw(8) << "Read" << setw(8) << vecRead << setw(8) << listRead << setw(8) << setRead << endl;
+    cout << setw(8) << "Sort" << setw(8) << vecSort << setw(8) << listSort << setw(8) << setSort << endl;
+    cout << setw(8) << "Insert" << setw(8) << vecInsert << setw(8) << listInsert << setw(8) << setInsert << endl;
+    cout << setw(8) << "Delete" << setw(8) << vecDelete << setw(8) << listDelete << setw(8) << setDelete << endl;
+
+    
+/* cout << " vec Read time: " << vecRead << endl;
 cout << " list Read time: " << listRead << endl;
 cout << " set Read time: " << setRead << endl;
 
@@ -189,7 +198,7 @@ cout << " set insert time: " << setInsert << endl;
 
 cout << " vec delete time: " << vecDelete << endl;
 cout << " list delete time: " << listDelete << endl;
-cout << " set delete time: " << setDelete << endl;
+cout << " set delete time: " << setDelete << endl; */
 
 
 
