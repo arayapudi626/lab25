@@ -88,6 +88,27 @@ int insertVector(vector<string>& vec, const string& val) {
     return duration_cast<milliseconds>(end - start).count();
 
 }
+int insertList(list<string>& lst, const string& val) {
+    auto start = high_resolution_clock::now();
+    list<string>::iterator it = lst.begin();
+    int mid = lst.size()/ 2;
+    for (int i = 0; i < mid; i++){
+        it++;
+    }
+    lst.insert(it, val);
+    auto end = high_resolution_clock::now();
+    return duration_cast<milliseconds>(end - start).count();
+
+}
+int insertSet(set<string>& st, const string& val) {
+    auto start = high_resolution_clock::now();
+    st.insert(val);
+    auto end = high_resolution_clock::now();
+    return duration_cast<milliseconds>(end - start).count();
+
+}
+//DELETE
+
 
 int main() {
 
@@ -105,6 +126,10 @@ int vecSort = sortVector(vec);
 int listSort = sortList(lst);
 //int setSort = sortSet(file, st);
 
+string insert = "HI";
+int vecInsert = insertVector(vec, insert);
+int listInsert = insertList(lst, insert);
+int setInsert = insertSet(st, insert);
     
 
 
@@ -113,9 +138,13 @@ cout << " vec Read time: " << vecRead;
 cout << " list Read time: " << listRead;
 cout << " set Read time: " << setRead;
 
-cout << " vec Read time: " << vecSort;
-cout << " list Read time: " << listSort;
+cout << " vec sort time: " << vecSort;
+cout << " list sort time: " << listSort;
 //cout << " set Read time: " << setSort;
+
+cout << " vec insert time: " << vecInsert;
+cout << " list insert time: " << listInsert;
+cout << " set insert time: " << setInsert;
 
 
 
