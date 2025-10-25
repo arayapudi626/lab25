@@ -8,18 +8,11 @@
 using namespace std;
 using namespace std::chrono;
 
-vector<string> vec;
-list<string> lst;
-set<string> st;
-
-int vecRead;
-int listRead;
-int setRead;
-
-int main() {
-    //reading
-    //vector
+//READING
+int readVector(string& filename, vector<string>& vec){
+    ifstream fin(filename);
     string line;
+
     auto start = high_resolution_clock::now();
     ifstream fin("codes.txt");
    while 
@@ -27,29 +20,55 @@ int main() {
        vec.push_back(line);
     }
     auto end = high_resolution_clock::now();
-    vecRead = duration_cast<milliseconds>(end-start).count();
+    return duration_cast<milliseconds>(end-start).count();
    // cout << "TIME: " << duration.count();
 
-   //list
-   start = high_resolution_clock::now();
-    ifstream fin2("codes.txt");
+}
+
+int readList(string& filename, list<string>& lst){
+    ifstream fin(filename);
+    string line;
+
+    auto start = high_resolution_clock::now();
+    ifstream fin("codes.txt");
    while 
-    (getline(fin2, line));{
+    (getline(fin, line));{
        lst.push_back(line);
     }
-    end = high_resolution_clock::now();
-    listRead = duration_cast<milliseconds>(end-start).count();
+    auto end = high_resolution_clock::now();
+    return duration_cast<milliseconds>(end-start).count();
 
-    //set
-    start = high_resolution_clock::now();
-    ifstream fin3("codes.txt");
+}
+
+int readSet(string& filename, set<string>& st){
+    ifstream fin(filename);
+    string line;
+
+    auto start = high_resolution_clock::now();
+    ifstream fin("codes.txt");
    while 
-    (getline(fin3, line));{
+    (getline(fin, line));{
        st.insert(line);
     }
-    end = high_resolution_clock::now();
-    setRead = duration_cast<milliseconds>(end-start).count();
+    auto end = high_resolution_clock::now();
+    return duration_cast<milliseconds>(end-start).count();
+
+}
+
+int main() {
+
+vector<string> vec;
+list<string> lst;
+set<string> st;
+
+string file = "codes.txt";
+
+int vecRead = readVector(file, vec);
+int listRead = readList(file, lst);
+int setRead = readSet(file, st);;
+
     
+
 
     //output
 cout << " vec Read time: " << vecRead;
