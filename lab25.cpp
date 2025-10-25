@@ -79,6 +79,16 @@ auto end = high_resolution_clock::now();
 return duration_cast<milliseconds>(end-start).count();
 } */
 
+//INSERT
+int insertVector(vector<string>& vec, const string& val) {
+    auto start = high_resolution_clock::now();
+    int mid = vec.size()/ 2;
+    vec.insert(vec.begin() + mid, val);
+    auto end = high_resolution_clock::now();
+    return duration_cast<milliseconds>(end - start).count();
+
+}
+
 int main() {
 
 vector<string> vec;
@@ -91,8 +101,8 @@ int vecRead = readVector(file, vec);
 int listRead = readList(file, lst);
 int setRead = readSet(file, st);
 
-int vecSort = sortVector(file, vec);
-int listSort = sortList(file, lst);
+int vecSort = sortVector(vec);
+int listSort = sortList(lst);
 //int setSort = sortSet(file, st);
 
     
